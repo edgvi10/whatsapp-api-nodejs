@@ -1,23 +1,23 @@
 version: '3.8'
 
 services:
-    mongodb:
-        container_name: mongodb
+    whatsapp_mongodb:
+        container_name: whatsapp_mongodb
         image: mongo:latest
         restart: unless-stopped
         ports:
             - 27017:27017
         volumes:
             - db:/data/db
-    app:
-        container_name: api
+    whatsapp_api:
+        container_name: whatsapp_api
         build:
             context: .
             dockerfile: Dockerfile
             args:
                 - PORT=${PORT}
         depends_on:
-            - mongodb
+            - whatsapp_mongodb
         restart: unless-stopped
         env_file: .env
         ports:

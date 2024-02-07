@@ -1,0 +1,7 @@
+.github
+.git
+node_modules
+*.log
+*-lock.json
+*.lock
+*.swp
