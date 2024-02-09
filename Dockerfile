@@ -1,14 +1,11 @@
 FROM node:20.11.0
 
-ARG _WORKDIR=/home/node/app
+ARG _WORKDIR=/home/node/whatsapp_api
 ARG PORT=3333
-
-# USER root
-# RUN apk add git
 
 WORKDIR ${_WORKDIR}
 
-ADD . ${_WORKDIR}
+COPY . ${_WORKDIR}
 RUN npm install --legacy-peer-deps
 
 USER node

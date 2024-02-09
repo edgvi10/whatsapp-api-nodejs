@@ -9,8 +9,12 @@ services:
             - 27017:27017
         volumes:
             - db:/data/db
+
     whatsapp_api:
         container_name: whatsapp_api
+        image: node:20.11.0
+        working_dir: /home/node/whatsapp_api
+        command: sh -c "npm install --legacy-peer-deps && npm run start"
         build:
             context: .
             dockerfile: Dockerfile
@@ -31,8 +35,7 @@ services:
             - WEBHOOK_URL=${WEBHOOK_URL}
             - WEBHOOK_BASE64=${WEBHOOK_BASE64}
         volumes:
-            - ./:/home/node/app
-            - /home/node/app/node_modules/
-
+            - ./:/home/node/whatsapp_api
+            - /home/node/whatsapp_api/node_modules/
 volumes:
     db:
