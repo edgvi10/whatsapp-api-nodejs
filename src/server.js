@@ -11,15 +11,10 @@ const connectToCluster = require("./api/helper/connectMongoClient");
 
 let server;
 
-if (config.mongoose.enabled) {
-    mongoose.set("strictQuery", true);
-    mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
-        logger.info("Connected to MongoDB");
-    })
-}
 
 server = app.listen(config.port, async () => {
     logger.info(`Listening on port ${config.port}`);
+
     global.mongoClient = await connectToCluster(config.mongoose.url);
     if (config.restoreSessionsOnStartup) {
         logger.info(`Restoring Sessions`);

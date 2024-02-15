@@ -14,7 +14,7 @@ services:
         container_name: whatsapp_api
         image: node:20.11.0
         working_dir: /home/node/whatsapp_api
-        command: sh -c "npm install --legacy-peer-deps && npm run start"
+        command: sh -c "npm run start"
         build:
             context: .
             dockerfile: Dockerfile
@@ -30,12 +30,11 @@ services:
             - TOKEN=${TOKEN}
             - PORT=${PORT}
             - MONGODB_ENABLED=${MONGODB_ENABLED}
-            - MONGODB_URL=mongodb://mongodb:27017
+            - MONGODB_URL=mongodb://whatsapp_mongodb:27017
             - WEBHOOK_ENABLED=${WEBHOOK_ENABLED}
             - WEBHOOK_URL=${WEBHOOK_URL}
             - WEBHOOK_BASE64=${WEBHOOK_BASE64}
-        volumes:
-            - ./:/home/node/whatsapp_api
-            - /home/node/whatsapp_api/node_modules/
+        # volumes:
+        #     - ./:/home/node/whatsapp_api
 volumes:
     db:

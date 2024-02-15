@@ -6,7 +6,7 @@ ARG PORT=3333
 WORKDIR ${_WORKDIR}
 
 COPY . ${_WORKDIR}
-RUN npm install --legacy-peer-deps
+# RUN npm install --legacy-peer-deps
 
 USER node
 EXPOSE ${PORT}
