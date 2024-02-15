@@ -20,7 +20,7 @@ const routes = require('../api/routes/');
 if (config.protectRoutes) {
     app.use(tokenCheck);
 }
-app.use('/', routes);
+app.use('/api', routes);
 app.use(error.handler);
 
 module.exports = app;
